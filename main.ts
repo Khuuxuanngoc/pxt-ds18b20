@@ -71,5 +71,32 @@ namespace DS18B20 {
           }
         }
         return z
-    }
+  }
+  
+  //% weight=10 blockId="Temperature_string_kxn" 
+    //% block="|%p| Temperature_string_kxn "
+    //% p.fieldEditor="gridpicker" p.fieldOptions.columns=4
+    export function TemperatureString_kxn(p: pin) : string{
+      let temp = Temperature(p);
+      let x = Math.round((temp / 10 ))
+      let y = Math.round((temp % 10))
+      let z = ''
+      if(temp >= 0){
+        if(y < 10){
+          z = x.toString() + '.' + y.toString()
+        }
+        else{
+          z = x.toString() + '.' + y.toString()
+        }
+      }
+      else if(temp < 0){
+        if(y > -10){
+          z = '-' + (-x).toString() + '.' + (-y).toString()
+        }
+        else{
+          z = '-' + (-x).toString() + '.' + (-y).toString()
+        }
+      }
+      return z
+  }
 }
